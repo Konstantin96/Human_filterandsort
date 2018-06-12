@@ -16,13 +16,13 @@ int main() {
 	vh.push_back(human("Liza", "Snaub", 22));
 
 	string key, svalue;
+	int ivalue;
+	int g;
 	do
-	{
-		int ivalue;
-		int g;
-		cout << "¬ведите 1 будет сделана фильтраци€ (1) \n";
-		cout << "¬ведите 2 будет сделана сортировка (2) \n";
-		cout << "¬ведите 3 чтобы найти им€          (3) : ";
+	{	
+		cout << "¬ведите 1 будет сделана фильтраци€       (1) \n";
+		cout << "¬ведите 2 будет сделана сортировка       (2) \n";
+		cout << "¬ведите 3 чтобы найти им€      (0 close) (3) : ";
 		cin >> g;
 
 		if (g == 1) {
@@ -78,12 +78,17 @@ int main() {
 
 		else if (g == 3) {
 			cout << "¬ведите им€: "; cin >> svalue;
-			auto it = find_if(vh.begin(), vh.end(), findByName("Kostya"));
+			auto it = find_if(vh.begin(), vh.end(), findByName(svalue));
 			if (it != vh.end())
-				cout << it->getName() << "\t" << it->geSname() << "\t" << it->getAge() <<" года"<< endl;
+				cout << it->getName() << " " << it->geSname() << "\t" << it->getAge() <<" года"<< endl;
 			system("pause");
 		}
-
+		else if (g == 0) {
+			cout << "                     ---------\n";
+			cout << "                     |Bye Bye|\n";
+			cout << "                     ---------\n";
+			system("pause");
+		}
 		else {
 			cout << "\nошибка, вы ввели неправильное значение!\n";
 			system("pause");
@@ -91,7 +96,7 @@ int main() {
 
 		system("cls");
 
-	} while (key != "y" && key != "Y");
+	} while (g!=0);
 
 	return 0;
 }
